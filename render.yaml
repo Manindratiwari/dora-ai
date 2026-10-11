@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: dora
+    runtime: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn --app-dir backend main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_PROVIDER
+        value: anthropic
+      - key: LLM_MODEL
+        value: claude-sonnet-5-5
